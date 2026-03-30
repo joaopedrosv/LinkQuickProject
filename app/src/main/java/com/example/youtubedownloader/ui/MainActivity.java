@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
 
-                String apiUrl = "http://192.168.15.169:5000/info?url=" + url;
+                String apiUrl = "http://192.xxx.xx.xxx:5000/info?url=" + url;
 
                 java.net.HttpURLConnection conn =
                         (java.net.HttpURLConnection) new java.net.URL(apiUrl).openConnection();

@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- HEADER -->
         <TextView
             android:id="@+id/titleApp"
             android:layout_width="wrap_content"
@@ -31,7 +30,7 @@
             android:alpha="0"
             android:translationY="20dp"/>
 
-        <!-- INPUT CARD -->
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout"
             android:layout_width="match_parent"
@@ -55,7 +54,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- BOTÃO -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/download"
             android:layout_width="match_parent"
@@ -69,7 +67,6 @@
             android:elevation="6dp"
             android:stateListAnimator="@null"/>
 
-        <!-- LOADING -->
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="40dp"
@@ -78,7 +75,6 @@
             android:layout_gravity="center"
             android:visibility="gone"/>
 
-        <!-- CARD VIDEO -->
         <LinearLayout
             android:id="@+id/cardVideo"
             android:layout_width="match_parent"
@@ -107,14 +103,12 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <!-- QUALIDADES -->
         <LinearLayout
             android:id="@+id/containerQualidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"/>
-
     </LinearLayout>
 
 </ScrollView>

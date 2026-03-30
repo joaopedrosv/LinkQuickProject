@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             titleTV.setText(title);
             Glide.with(this).load(thumb).into(thumbnail);
 
-            // animação card
             cardVideo.setAlpha(0f);
             cardVideo.animate().alpha(1f).setDuration(400).start();
 

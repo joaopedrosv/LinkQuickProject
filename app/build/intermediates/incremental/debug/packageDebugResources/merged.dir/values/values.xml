@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#4F8CFF</color>
+    <color name="black">#FF000000</color>
+    <color name="card">#121826</color>
+    <color name="inputHint">#6B7280</color>
+    <color name="primary">#0A0F1C</color>
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#A0A8B8</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">YouTube Downloader</string>
+    <style name="Base.Theme.YouTubeDownloader" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="Theme.YouTubeDownloader" parent="Base.Theme.YouTubeDownloader"/>
+</resources>

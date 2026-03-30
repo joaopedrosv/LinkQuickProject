@@ -1,0 +1,120 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- HEADER -->
+        <TextView
+            android:id="@+id/titleApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LinkQuick"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:alpha="0"
+            android:translationY="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baixe vídeos do YouTube"
+            android:textColor="@color/textSecondary"
+            android:layout_marginBottom="24dp"
+            android:alpha="0"
+            android:translationY="20dp"/>
+
+        <!-- INPUT CARD -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/card"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"
+            app:boxStrokeColor="@color/accent"
+            app:hintTextColor="@color/inputHint"
+            android:elevation="4dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/urlET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cole o link aqui"
+                android:textColor="@color/textPrimary"
+                android:textColorHint="@color/inputHint"
+                android:background="@android:color/transparent"
+                android:padding="12dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTÃO -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/download"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Buscar vídeo"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/accent"
+            app:cornerRadius="18dp"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"/>
+
+        <!-- LOADING -->
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+        <!-- CARD VIDEO -->
+        <LinearLayout
+            android:id="@+id/cardVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card"
+            android:padding="12dp"
+            android:layout_marginTop="24dp"
+            android:elevation="6dp"
+            android:visibility="gone"
+            android:alpha="0">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- QUALIDADES -->
+        <LinearLayout
+            android:id="@+id/containerQualidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+</ScrollView>

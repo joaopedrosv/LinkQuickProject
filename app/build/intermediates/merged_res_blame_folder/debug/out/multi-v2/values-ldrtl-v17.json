@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.youtubedownloader.app-mergeDebugResources-33:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.youtubedownloader.app-mergeDebugResources-39:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\supor\\.gradle\\caches\\transforms-3\\f77583257dfd331387820d71e3908fd2\\transformed\\material-1.5.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\supor\\.gradle\\caches\\transforms-3\\0524c40990fe3e8deceab6ca9bd8fd7a\\transformed\\material-1.5.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

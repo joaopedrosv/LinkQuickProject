@@ -3,15 +3,24 @@
     <color name="accent">#4F8CFF</color>
     <color name="black">#FF000000</color>
     <color name="card">#121826</color>
+    <color name="green">#095840</color>
     <color name="inputHint">#6B7280</color>
     <color name="primary">#0A0F1C</color>
     <color name="textPrimary">#FFFFFF</color>
     <color name="textSecondary">#A0A8B8</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">YouTube Downloader</string>
+    <string name="default_web_client_id" translatable="false">541150820222-3a2up7bctt5r84im0logl5jv7n70m4ai.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">541150820222</string>
+    <string name="google_api_key" translatable="false">AIzaSyCUqgcCt5SGnXtnFylBUgQWx_q-kCBGmcE</string>
+    <string name="google_app_id" translatable="false">1:541150820222:android:43609d0b833dc63ce2652f</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCUqgcCt5SGnXtnFylBUgQWx_q-kCBGmcE</string>
+    <string name="google_storage_bucket" translatable="false">linkquick-7ded9.firebasestorage.app</string>
+    <string name="project_id" translatable="false">linkquick-7ded9</string>
     <style name="Base.Theme.YouTubeDownloader" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/primary</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
     <style name="Theme.YouTubeDownloader" parent="Base.Theme.YouTubeDownloader"/>
 </resources>

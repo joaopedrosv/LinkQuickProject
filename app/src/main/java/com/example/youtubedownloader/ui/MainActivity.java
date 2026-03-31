@@ -2,6 +2,7 @@ package com.example.youtubedownloader.ui;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,8 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.youtubedownloader.R;
+import com.google.android.gms.auth.api.signin.*;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
     TextInputEditText urlET;
     LinearLayout containerQualidades, cardVideo;
-    ImageView thumbnail;
+    ImageView thumbnail, userIcon;
     TextView titleTV, titleApp;
     ProgressBar loading;
+
+    FirebaseAuth auth;
+    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +51,26 @@ public class MainActivity extends AppCompatActivity {
         loading = findViewById(R.id.loading);
         cardVideo = findViewById(R.id.cardVideo);
         titleApp = findViewById(R.id.titleApp);
+        userIcon = findViewById(R.id.userIcon);
+
+        auth = FirebaseAuth.getInstance();
+
+        // 🔥 CONFIG GOOGLE LOGIN
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken("541150820222-3a2up7bctt5r84im0logl5jv7n70m4ai.apps.googleusercontent.com")
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         animarEntrada();
+        atualizarUsuario();
+
+        userIcon.setOnClickListener(v -> mostrarModalUsuario());
 
         MaterialButton btn = findViewById(R.id.download);
 
         btn.setOnClickListener(v -> {
-
-            v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100)
-                    .withEndAction(() ->
-                            v.animate().scaleX(1f).scaleY(1f).setDuration(100)
-                    );
 
             String url = urlET.getText().toString().trim();
 
@@ -64,6 +82,91 @@ public class MainActivity extends AppCompatActivity {
             carregarEstado();
             buscarVideo(url);
         });
+    }
+
+    // 🔥 MODAL
+    private void mostrarModalUsuario() {
+
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.bottom_sheet_user, null);
+        dialog.setContentView(view);
+
+        ImageView photo = view.findViewById(R.id.userPhoto);
+        TextView name = view.findViewById(R.id.userName);
+        TextView email = view.findViewById(R.id.userEmail);
+        MaterialButton loginBtn = view.findViewById(R.id.loginBtn);
+        MaterialButton logoutBtn = view.findViewById(R.id.logoutBtn);
+
+        FirebaseUser user = auth.getCurrentUser();
+
+        if (user != null) {
+            name.setText(user.getDisplayName());
+            email.setText(user.getEmail());
+
+            loginBtn.setVisibility(View.GONE);
+            logoutBtn.setVisibility(View.VISIBLE);
+
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .circleCrop()
+                    .into(photo);
+
+            logoutBtn.setOnClickListener(v -> {
+                auth.signOut();
+                googleSignInClient.signOut();
+                dialog.dismiss();
+                atualizarUsuario();
+            });
+
+        } else {
+            name.setText("Não logado");
+            email.setText("");
+
+            loginBtn.setVisibility(View.VISIBLE);
+            logoutBtn.setVisibility(View.GONE);
+
+            loginBtn.setOnClickListener(v -> {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, 1001);
+            });
+        }
+
+        dialog.show();
+    }
+
+    // 🔥 RESULTADO LOGIN
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1001) {
+            try {
+                GoogleSignInAccount account = GoogleSignIn
+                        .getSignedInAccountFromIntent(data)
+                        .getResult(ApiException.class);
+
+                if (account != null) {
+                    Toast.makeText(this, "Logado: " + account.getEmail(), Toast.LENGTH_SHORT).show();
+                    atualizarUsuario();
+                }
+
+            } catch (Exception e) {
+                Toast.makeText(this, "Erro no login", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void atualizarUsuario() {
+        FirebaseUser user = auth.getCurrentUser();
+
+        if (user != null && user.getPhotoUrl() != null) {
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .circleCrop()
+                    .into(userIcon);
+        } else {
+            userIcon.setImageResource(R.drawable.user);
+        }
     }
 
     private void animarEntrada() {
@@ -82,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buscarVideo(String url) {
-
         new Thread(() -> {
             try {
 
@@ -126,10 +228,17 @@ public class MainActivity extends AppCompatActivity {
             JSONArray formats = obj.getJSONArray("formats");
 
             titleTV.setText(title);
-            Glide.with(this).load(thumb).into(thumbnail);
+            if (thumb != null && !thumb.isEmpty()) {
+                Glide.with(this)
+                        .load(thumb)
+                        .placeholder(R.drawable.user)
+                        .error(R.drawable.user)
+                        .into(thumbnail);
+            } else {
+                thumbnail.setImageResource(R.drawable.user);
+            }
 
-            cardVideo.setAlpha(0f);
-            cardVideo.animate().alpha(1f).setDuration(400).start();
+            containerQualidades.removeAllViews();
 
             HashMap<Integer, String> map = new HashMap<>();
 
@@ -154,30 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 MaterialButton b = new MaterialButton(this);
                 b.setText("Baixar " + q + "p");
 
-                b.setTextColor(getResources().getColor(R.color.textPrimary));
-                b.setCornerRadius(20);
-                b.setStrokeWidth(1);
-                b.setStrokeColorResource(R.color.accent);
-                b.setBackgroundTintList(getResources().getColorStateList(R.color.card));
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-                params.setMargins(0, 20, 0, 0);
-                b.setLayoutParams(params);
-
                 b.setOnClickListener(v -> baixar(videoUrl));
-
-                // animação estilo Nubank
-                b.setAlpha(0f);
-                b.setTranslationY(40);
-                b.animate()
-                        .alpha(1f)
-                        .translationY(0)
-                        .setDuration(300)
-                        .setInterpolator(new OvershootInterpolator())
-                        .start();
 
                 containerQualidades.addView(b);
             }

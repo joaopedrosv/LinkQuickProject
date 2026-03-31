@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -10,17 +11,38 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/titleApp"
-            android:layout_width="wrap_content"
+        <!-- 🔥 HEADER CORRETO -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LinkQuick"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/textPrimary"
-            android:alpha="0"
-            android:translationY="20dp"/>
+            android:layout_marginBottom="16dp">
 
+            <TextView
+                android:id="@+id/titleApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LinkQuick"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/textPrimary"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:alpha="0"
+                android:translationY="20dp"/>
+
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/user"
+                android:background="@color/card"
+                android:padding="6dp"
+                android:elevation="6dp"/>
+        </RelativeLayout>
+
+        <!-- SUBTITULO -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +52,7 @@
             android:alpha="0"
             android:translationY="20dp"/>
 
-
+        <!-- INPUT -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout"
             android:layout_width="match_parent"
@@ -40,7 +62,11 @@
             android:layout_marginBottom="16dp"
             app:boxStrokeColor="@color/accent"
             app:hintTextColor="@color/inputHint"
-            android:elevation="4dp">
+            android:elevation="4dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/urlET"
@@ -51,9 +77,9 @@
                 android:textColorHint="@color/inputHint"
                 android:background="@android:color/transparent"
                 android:padding="12dp"/>
-
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- BOTÃO -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/download"
             android:layout_width="match_parent"
@@ -62,11 +88,11 @@
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textColor="@android:color/white"
-            android:backgroundTint="@color/accent"
+            android:backgroundTint="@color/green"
             app:cornerRadius="18dp"
-            android:elevation="6dp"
-            android:stateListAnimator="@null"/>
+            android:elevation="6dp"/>
 
+        <!-- LOADING -->
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="40dp"
@@ -75,6 +101,7 @@
             android:layout_gravity="center"
             android:visibility="gone"/>
 
+        <!-- CARD VIDEO -->
         <LinearLayout
             android:id="@+id/cardVideo"
             android:layout_width="match_parent"
@@ -103,12 +130,14 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
+        <!-- QUALIDADES -->
         <LinearLayout
             android:id="@+id/containerQualidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"/>
+
     </LinearLayout>
 
 </ScrollView>

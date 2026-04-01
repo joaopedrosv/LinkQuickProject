@@ -13,10 +13,14 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable user
 drawable user_icon
+id btnDeleteHistory
 id btnGoogle
 id cardVideo
 id containerQualidades
 id download
+id historyDate
+id historyRecyclerView
+id historyThumbnail
 id historyTitle
 id inputLayout
 id list_item_download
@@ -26,10 +30,11 @@ id loading
 id loginBtn
 id logoutBtn
 id recyclerHistory
+id splashScreen
+id splashText
 id thumbnail
 id titleApp
 id titleTV
-id txtUrl
 id urlET
 id userEmail
 id userIcon
@@ -38,6 +43,7 @@ id userPhoto
 layout activity_history
 layout activity_login
 layout activity_main
+layout bottom_sheet_history
 layout bottom_sheet_user
 layout history_item
 layout item_history

@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/txtUrl"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="URL"
-        android:textSize="14sp"/>
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
 
-</RelativeLayout>
+        <!-- Thumbnail -->
+        <ImageView
+            android:id="@+id/historyThumbnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Video thumbnail"
+            android:background="@android:color/darker_gray" />
+
+        <!-- Conteúdo -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/historyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título do Vídeo"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@android:color/black" />
+
+            <!-- Data -->
+            <TextView
+                android:id="@+id/historyDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="há 2 horas"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/darker_gray" />
+
+        </LinearLayout>
+
+        <!-- Botão de Deletar -->
+        <ImageButton
+            android:id="@+id/btnDeleteHistory"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@android:color/holo_red_dark"
+            android:contentDescription="Deletar" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

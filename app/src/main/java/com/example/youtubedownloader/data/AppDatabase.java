@@ -5,7 +5,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {DownloadHistory.class}, version = 1)
+@Database(entities = {DownloadHistory.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
@@ -18,7 +18,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     context.getApplicationContext(),
                     AppDatabase.class,
                     "downloads_db"
-            ).allowMainThreadQueries().build();
+            ).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         }
         return instance;
     }

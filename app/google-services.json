@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "541150820222",
-    "project_id": "linkquick-7ded9",
-    "storage_bucket": "linkquick-7ded9.firebasestorage.app"
+    "project_number": "232606653175",
+    "project_id": "linkquick-46062",
+    "storage_bucket": "linkquick-46062.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:541150820222:android:43609d0b833dc63ce2652f",
+        "mobilesdk_app_id": "1:232606653175:android:d9385ae9343f57750a91f2",
         "android_client_info": {
           "package_name": "com.example.youtubedownloader"
         }
       },
       "oauth_client": [
         {
-          "client_id": "541150820222-pv2nfdjvun13po1jbf4n3mmi55e9vlqm.apps.googleusercontent.com",
+          "client_id": "232606653175-qshvvjdktmu2fomeplletv2h9cmof9q2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.youtubedownloader",
-            "certificate_hash": "6bb8e8b59ad987efe7a1c591561b13eb4d108e11"
+            "certificate_hash": "599d227b86a0348f0975a81762335273a44165ee"
           }
         },
         {
-          "client_id": "541150820222-3a2up7bctt5r84im0logl5jv7n70m4ai.apps.googleusercontent.com",
+          "client_id": "232606653175-tqddteg18o9tn7mg17ouea5tssnd946v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCUqgcCt5SGnXtnFylBUgQWx_q-kCBGmcE"
+          "current_key": "AIzaSyDyj-63X_CxMYcB1kPIzrQRRhmMItSQSFc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "541150820222-3a2up7bctt5r84im0logl5jv7n70m4ai.apps.googleusercontent.com",
+              "client_id": "232606653175-tqddteg18o9tn7mg17ouea5tssnd946v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

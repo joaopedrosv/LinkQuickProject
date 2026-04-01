@@ -10,6 +10,8 @@ public class DownloadHistory {
     public int id;
 
     public String url;
+    public String title;
+    public String thumbnail;
     public String filePath;
     public long date;
 }

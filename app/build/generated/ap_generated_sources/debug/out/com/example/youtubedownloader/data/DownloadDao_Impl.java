@@ -31,7 +31,7 @@ public final class DownloadDao_Impl implements DownloadDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `DownloadHistory` (`id`,`url`,`filePath`,`date`) VALUES (nullif(?, 0),?,?,?)";
+        return "INSERT OR ABORT INTO `DownloadHistory` (`id`,`url`,`title`,`thumbnail`,`filePath`,`date`) VALUES (nullif(?, 0),?,?,?,?,?)";
       }
 
       @Override
@@ -43,12 +43,22 @@ public final class DownloadDao_Impl implements DownloadDao {
         } else {
           statement.bindString(2, entity.url);
         }
-        if (entity.filePath == null) {
+        if (entity.title == null) {
           statement.bindNull(3);
         } else {
-          statement.bindString(3, entity.filePath);
+          statement.bindString(3, entity.title);
         }
-        statement.bindLong(4, entity.date);
+        if (entity.thumbnail == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.thumbnail);
+        }
+        if (entity.filePath == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindString(5, entity.filePath);
+        }
+        statement.bindLong(6, entity.date);
       }
     };
     this.__deletionAdapterOfDownloadHistory = new EntityDeletionOrUpdateAdapter<DownloadHistory>(__db) {
@@ -99,6 +109,8 @@ public final class DownloadDao_Impl implements DownloadDao {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "url");
+      final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
+      final int _cursorIndexOfThumbnail = CursorUtil.getColumnIndexOrThrow(_cursor, "thumbnail");
       final int _cursorIndexOfFilePath = CursorUtil.getColumnIndexOrThrow(_cursor, "filePath");
       final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
       final List<DownloadHistory> _result = new ArrayList<DownloadHistory>(_cursor.getCount());
@@ -110,6 +122,16 @@ public final class DownloadDao_Impl implements DownloadDao {
           _item.url = null;
         } else {
           _item.url = _cursor.getString(_cursorIndexOfUrl);
+        }
+        if (_cursor.isNull(_cursorIndexOfTitle)) {
+          _item.title = null;
+        } else {
+          _item.title = _cursor.getString(_cursorIndexOfTitle);
+        }
+        if (_cursor.isNull(_cursorIndexOfThumbnail)) {
+          _item.thumbnail = null;
+        } else {
+          _item.thumbnail = _cursor.getString(_cursorIndexOfThumbnail);
         }
         if (_cursor.isNull(_cursorIndexOfFilePath)) {
           _item.filePath = null;
